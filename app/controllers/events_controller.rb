@@ -26,11 +26,14 @@ class EventsController < ApplicationController
     
     def rsvp
         @event = Event.find(params[:id])
-        
-        if current_user.attended_events << @event
-            flash[:notice] = "You have successfully RSVPed to the event."
+        if @event.attendees.include?(current_user)
+            flash[:alert] = "You are going to this event"
         else
-            flash[:alert] = "There was an error RSVPing to the event."
+            if current_user.attended_events << @event
+                flash[:notice] = "You have successfully RSVPed to the event."
+            else
+                flash[:alert] = "There was an error RSVPing to the event."
+            end
         end
         
         redirect_to events_path
