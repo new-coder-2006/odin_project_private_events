@@ -1,6 +1,6 @@
-<h1>Events</h1>
+<h1>Upcoming Events</h1>
 
-<% @events.each do |event| %>
+<% @upcoming_events.each do |event| %>
   <div class="event">
     <h2><%= event.event_name %></h2>
     <p><%= event.location %></p>
@@ -10,5 +10,25 @@
     <% else %>
       <p>You are going to this event.</p>
     <% end %>
+  </div>
+<% end %>
+
+<h1> Past Events </h1>
+
+<% @past_events.each do |event| %>
+  <div class="event">
+    <h2><%= event.event_name %></h2>
+    <p><%= event.location %></p>
+    <p><%= event.event_date %></p>
+  </div>
+<% end %>
+
+<h1> Undated Events </h1>
+
+<% @undated_events.each do |event| %>
+  <div class="event">
+    <h2><%= event.event_name %></h2>
+    <p><%= event.location %></p>
+    <p><%= event.event_date %></p>
   </div>
 <% end %>
