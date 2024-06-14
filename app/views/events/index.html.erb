@@ -10,6 +10,7 @@
     <% else %>
       <p>You are going to this event.</p>
     <% end %>
+    <%= button_to "View Details", event_path(event.id), method: :get %>
   </div>
 <% end %>
 
@@ -20,6 +21,7 @@
     <h2><%= event.event_name %></h2>
     <p><%= event.location %></p>
     <p><%= event.event_date %></p>
+    <%= button_to "View Details", event_path(event.id), method: :get %>
   </div>
 <% end %>
 
@@ -30,5 +32,11 @@
     <h2><%= event.event_name %></h2>
     <p><%= event.location %></p>
     <p><%= event.event_date %></p>
+    <% unless event.attendees.include?(current_user) %>
+      <%= button_to 'RSVP', rsvp_event_path(event), method: :post, class: "btn btn-primary" %>
+    <% else %>
+      <p>You are going to this event.</p>
+    <% end %>
+    <%= button_to "View Details", event_path(event.id), method: :get %>
   </div>
 <% end %>
