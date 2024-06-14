@@ -5,5 +5,6 @@
     <h2><%= event.event_name %></h2>
     <p><%= event.location %></p>
     <p><%= event.event_date %></p>
+    <%= button_to 'RSVP', rsvp_event_path(event), method: :post, class: "btn btn-primary" %>
   </div>
 <% end %>

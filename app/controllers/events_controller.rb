@@ -23,6 +23,18 @@ class EventsController < ApplicationController
     def index
         @events = Event.all
     end
+    
+    def rsvp
+        @event = Event.find(params[:id])
+        
+        if current_user.attended_events << @event
+            flash[:notice] = "You have successfully RSVPed to the event."
+        else
+            flash[:alert] = "There was an error RSVPing to the event."
+        end
+        
+        redirect_to events_path
+    end
 
     private
 
